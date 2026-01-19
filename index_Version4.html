@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EcoTrip — Calculadora de Emissão de CO₂</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="EcoTrip - calculadora de emissão de CO2 entre dois pontos por diversos meios de transporte">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>EcoTrip</h1>
+      <p class="subtitle">Calculadora de Emissão de CO₂ — Some trechos e estime créditos de Carbono</p>
+    </header>
+
+    <section class="route-section card">
+      <h2>Defina a rota</h2>
+      <div class="row">
+        <label for="preset-route">Rotas rápidas</label>
+        <select id="preset-route">
+          <option value="">-- Selecione uma rota --</option>
+          <option value="430" data-from="São Paulo - SP" data-to="Rio de Janeiro - RJ">
+            São Paulo (SP) → Rio de Janeiro (RJ) — 430 km
+          </option>
+          <option value="706" data-from="São Paulo - SP" data-to="Florianópolis - SC">
+            São Paulo (SP) → Florianópolis (SC) — 706 km
+          </option>
+          <option value="586" data-from="São Paulo - SP" data-to="Belo Horizonte - MG">
+            São Paulo (SP) → Belo Horizonte (MG) — 586 km
+          </option>
+          <option value="300" data-from="Florianópolis - SC" data-to="Curitiba - PR">
+            Florianópolis (SC) → Curitiba (PR) — 300 km
+          </option>
+          <option value="740" data-from="Belo Horizonte - MG" data-to="Brasília - DF">
+            Belo Horizonte (MG) → Brasília (DF) — 740 km
+          </option>
+          <option value="1130" data-from="Porto Alegre - RS" data-to="São Paulo - SP">
+            Porto Alegre (RS) → São Paulo (SP) — 1.130 km
+          </option>
+          <option value="699" data-from="Curitiba - PR" data-to="Rio de Janeiro - RJ">
+            Curitiba (PR) → Rio de Janeiro (RJ) — 699 km
+          </option>
+          <option value="100" data-from="Salvador - BA" data-to="Feira de Santana - BA">
+            Salvador (BA) → Feira de Santana (BA) — 100 km (regional)
+          </option>
+          <option value="235" data-from="Fortaleza - CE" data-to="Sobral - CE">
+            Fortaleza (CE) → Sobral (CE) — 235 km (regional)
+          </option>
+          <option value="750" data-from="Manaus - AM" data-to="Porto Velho - RO">
+            Manaus (AM) → Porto Velho (RO) — 750 km (aprox.)
+          </option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label for="origin">Origem</label>
+        <input id="origin" type="text" placeholder="Ex: São Paulo, SP" />
+      </div>
+
+      <div class="row">
+        <label for="destination">Destino</label>
+        <input id="destination" type="text" placeholder="Ex: Rio de Janeiro, RJ" />
+      </div>
+
+      <div class="row">
+        <label for="distance">Distância (km)</label>
+        <input id="distance" type="number" min="0" step="0.1" placeholder="Insira a distância em km" />
+      </div>
+    </section>
+
+    <section class="modes-section card">
+      <h2>Escolha o modo de locomoção</h2>
+      <p class="hint">Clique em um modo, ajuste a distância (se necessário) e adicione o trecho.</p>
+
+      <div class="modes">
+        <button class="mode-btn" data-mode="bicicleta" id="btn-bicicleta">🚲 Bicicleta</button>
+        <button class="mode-btn" data-mode="carro" id="btn-carro">🚗 Carro</button>
+        <button class="mode-btn" data-mode="onibus" id="btn-onibus">🚌 Ônibus</button>
+        <button class="mode-btn" data-mode="caminhao" id="btn-caminhao">🚚 Caminhão</button>
+      </div>
+
+      <div class="row actions-row">
+        <button id="add-leg" class="primary">➕ Adicionar trecho</button>
+        <button id="clear-legs" class="secondary">🗑️ Limpar trechos</button>
+      </div>
+    </section>
+
+    <section class="legs-section card">
+      <h2>Trechos adicionados</h2>
+      <ul id="legs-list" class="legs-list"></ul>
+      <div class="totals">
+        <div class="total-item">
+          <span>Total CO₂ (kg)</span>
+          <strong id="total-co2">0</strong>
+        </div>
+        <div class="total-item">
+          <span>Créditos necessários (kg/credito = <span id="kg-per-credit">100</span>)</span>
+          <strong id="credits-needed">0</strong>
+        </div>
+        <div class="total-item">
+          <span>Custo estimado (BRL)</span>
+          <strong id="cost-range">R$ 0 — R$ 0</strong>
+        </div>
+      </div>
+    </section>
+
+    <footer class="card footer">
+      <h3>Fatores de emissão (kg CO₂ / km)</h3>
+      <ul id="factors-legend"></ul>
+      <p class="note">
+        Observação: os fatores de emissão são valores de referência e podem variar. Ajuste conforme necessário.
+      </p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
